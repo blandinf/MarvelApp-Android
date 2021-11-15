@@ -1,0 +1,37 @@
+/**
+ * Libraries Versions
+ *
+ * This file is injected directly in build.gradle (Project).
+ * We don't need to inject it in modules build.gradle.
+ *
+ * This is how we inject the file :
+ * `apply from: "${rootProject.rootDir}/project-versions.gradle"`
+ */
+ext {
+    /**
+     * Build versions
+     */
+    buildVersions = [
+        'compileSdk'       : 31,
+        'buildToolsVersion': '30.0.3',
+        'minSdk'           : 21,
+        'targetSdk'        : 31,
+    ]
+
+    /**
+     * Libraries versions
+     */
+    librariesVersion = [
+        'kotlinCoroutine'   : '1.5.0',
+        'firebase'          : '28.2.1',
+        'material'          : '1.4.0',
+        'androidxCore'      : '1.7.0',
+        'appcompat'         : '1.3.1',
+        'constraintlayout'  : '2.1.1',
+        'fragment'          : '1.3.6',
+        'recyclerview'      : '1.2.1',
+        'lifecycle'         : '2.4.0',
+        'retrofit'          : '2.9.0',
+        'okhttp'            : '5.0.0-alpha.2',
+    ]
+}

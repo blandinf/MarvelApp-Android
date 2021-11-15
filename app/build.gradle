@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "31.0.0"
+    compileSdkVersion buildVersions.compileSdk
+    buildToolsVersion buildVersions.buildToolsVersion
 
     defaultConfig {
         applicationId "com.blandinf.marvelapp"
-        minSdkVersion 16
-        targetSdkVersion 31
+        minSdkVersion buildVersions.minSdk
+        targetSdkVersion buildVersions.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -34,12 +34,20 @@ android {
 
 dependencies {
 
+    implementation "androidx.core:core-ktx:${librariesVersion.androidxCore}"
+    implementation "androidx.appcompat:appcompat:${librariesVersion.appcompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${librariesVersion.constraintlayout}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${librariesVersion.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${librariesVersion.lifecycle}"
+    implementation "androidx.recyclerview:recyclerview:${librariesVersion.recyclerview}"
+    implementation "androidx.fragment:fragment-ktx:${librariesVersion.fragment}"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation "com.google.android.material:material:${librariesVersion.material}"
+
     testImplementation 'junit:junit:4.+'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
