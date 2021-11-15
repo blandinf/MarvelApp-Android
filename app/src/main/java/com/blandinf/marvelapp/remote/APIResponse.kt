@@ -1,4 +1,4 @@
-package com.blandinf.datas.models
+package com.blandinf.marvelapp.remote
 
 data class APIResponse<T> (
     val code: Long,
