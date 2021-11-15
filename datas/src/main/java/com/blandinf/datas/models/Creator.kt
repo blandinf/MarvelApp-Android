@@ -1,4 +1,4 @@
-package com.blandinf.marvelapp.models
+package com.blandinf.datas.models
 
 data class Creator (
     val available: Long,

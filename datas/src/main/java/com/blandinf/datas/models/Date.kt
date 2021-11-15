@@ -1,4 +1,4 @@
-package com.blandinf.marvelapp.models
+package com.blandinf.datas.models
 
 data class Date (
     val type: DateType,
