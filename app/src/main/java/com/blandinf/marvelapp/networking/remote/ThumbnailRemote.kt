@@ -1,4 +1,4 @@
-package com.blandinf.marvelapp.remote
+package com.blandinf.marvelapp.networking.remote
 
 import com.google.gson.annotations.SerializedName
 

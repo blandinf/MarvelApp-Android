@@ -1,4 +1,4 @@
-package com.blandinf.marvelapp.remote
+package com.blandinf.marvelapp.networking.remote
 
 data class APIResponse<T> (
     val code: Long,

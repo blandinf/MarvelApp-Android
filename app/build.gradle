@@ -42,9 +42,14 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${librariesVersion.recyclerview}"
     implementation "androidx.fragment:fragment-ktx:${librariesVersion.fragment}"
 
+    implementation "com.squareup.retrofit2:retrofit:${librariesVersion.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${librariesVersion.retrofit}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${librariesVersion.okhttp}"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     implementation "com.google.android.material:material:${librariesVersion.material}"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.+'
 
