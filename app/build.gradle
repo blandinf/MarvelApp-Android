@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'PUBLIC_API_KEY', '"06e6c775eb39c531415805a82a692817"'
+        buildConfigField 'String', 'PRIVATE_API_KEY', '"02611b0fa9ab10cb0a0c7c84af7a3353971cf0a3"'
     }
 
     buildTypes {
@@ -23,6 +27,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -46,13 +56,16 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:${librariesVersion.retrofit}"
     implementation "com.squareup.okhttp3:logging-interceptor:${librariesVersion.okhttp}"
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
     implementation "com.google.android.material:material:${librariesVersion.material}"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${librariesVersion.kotlinCoroutine}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${librariesVersion.kotlinCoroutine}"
 
     testImplementation 'junit:junit:4.+'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "com.squareup.retrofit2:retrofit-mock:${librariesVersion.retrofit}"
+
 }
