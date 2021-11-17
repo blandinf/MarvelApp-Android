@@ -11,5 +11,5 @@ data class ThumbnailRemote (
 
 enum class Extension {
     @SerializedName("jpg")
-    Jpg
+    jpg
 }

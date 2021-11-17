@@ -33,5 +33,6 @@ ext {
         'lifecycle'         : '2.4.0',
         'retrofit'          : '2.9.0',
         'okhttp'            : '5.0.0-alpha.2',
+        'coil'              : '1.4.0'
     ]
 }
