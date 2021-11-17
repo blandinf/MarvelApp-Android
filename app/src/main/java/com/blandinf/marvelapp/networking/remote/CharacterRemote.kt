@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 /** The attributes of the Character object */
 @Suppress("unused")
 data class CharacterRemote (
-    @SerializedName("Available") val available: Long,
-    @SerializedName("CollectionURI") val collectionURI: String,
-    @SerializedName("Items") val items: List<SerieRemote>,
-    @SerializedName("Returned") val returned: Long
+    @SerializedName("available") val available: Long,
+    @SerializedName("collectionURI") val collectionURI: String,
+    @SerializedName("items") val items: List<SerieRemote>,
+    @SerializedName("returned") val returned: Long
 )

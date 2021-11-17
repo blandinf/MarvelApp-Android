@@ -5,46 +5,52 @@ import com.google.gson.annotations.SerializedName
 /** The attributes of the Comic object */
 @Suppress("unused")
 data class ComicRemote (
-    @SerializedName("Id")  val id: Long,
-    @SerializedName("DigitalID")  val digitalID: Long,
-    @SerializedName("Title")  val title: String,
-    @SerializedName("IssueNumber")  val issueNumber: Long,
-    @SerializedName("VariantDescription")  val variantDescription: String,
-    @SerializedName("Description")  val description: String? = null,
-    @SerializedName("Modified")  val modified: String,
-    @SerializedName("Isbn")  val isbn: String,
-    @SerializedName("Upc")  val upc: String,
-    @SerializedName("DiamondCode")  val diamondCode: DiamondCode,
-    @SerializedName("Ean")  val ean: String,
-    @SerializedName("Issn")  val issn: String,
-    @SerializedName("Format")  val format: Format,
-    @SerializedName("PageCount")  val pageCount: Long,
-    @SerializedName("TextObjects")  val textObjects: List<TextObjectRemote>,
-    @SerializedName("ResourceURI")  val resourceURI: String,
-    @SerializedName("Urls")  val urls: List<URLRemote>,
-    @SerializedName("Series")  val series: SerieRemote,
-    @SerializedName("Variants")  val variants: List<SerieRemote>,
-    @SerializedName("Collections")  val collections: List<Any?>,
-    @SerializedName("CollectedIssues")  val collectedIssues: List<SerieRemote>,
-    @SerializedName("Dates")  val dates: List<DateRemote>,
-    @SerializedName("Prices")  val prices: List<PriceRemote>,
-    @SerializedName("Thumbnail")  val thumbnail: ThumbnailRemote,
-    @SerializedName("Images")  val images: List<ThumbnailRemote>,
-    @SerializedName("Creators")  val creators: CreatorRemote,
-    @SerializedName("Character")  val character: CharacterRemote,
-    @SerializedName("Stories")  val stories: StoryRemote,
-    @SerializedName("Events")  val events: CharacterRemote
+    @SerializedName("id")  val id: Long,
+    @SerializedName("digitalId")  val digitalId: Long,
+    @SerializedName("title")  val title: String,
+    @SerializedName("issueNumber")  val issueNumber: Long,
+    @SerializedName("variantDescription")  val variantDescription: String,
+    @SerializedName("description")  val description: String? = null,
+    @SerializedName("modified")  val modified: String,
+    @SerializedName("isbn")  val isbn: String,
+    @SerializedName("upc")  val upc: String,
+    @SerializedName("diamondCode")  val diamondCode: DiamondCode,
+    @SerializedName("ean")  val ean: String,
+    @SerializedName("issn")  val issn: String,
+    @SerializedName("format")  val format: Format,
+    @SerializedName("pageCount")  val pageCount: Long,
+    @SerializedName("textObjects")  val textObjects: List<TextObjectRemote>,
+    @SerializedName("resourceURI")  val resourceURI: String,
+    @SerializedName("urls")  val urls: List<URLRemote>,
+    @SerializedName("series")  val series: SerieRemote,
+    @SerializedName("variants")  val variants: List<SerieRemote>,
+    @SerializedName("collections")  val collections: List<Any?>,
+    @SerializedName("collectedIssues")  val collectedIssues: List<SerieRemote>,
+    @SerializedName("dates")  val dates: List<DateRemote>,
+    @SerializedName("prices")  val prices: List<PriceRemote>,
+    @SerializedName("thumbnail")  val thumbnail: ThumbnailRemote,
+    @SerializedName("images")  val images: List<ThumbnailRemote>,
+    @SerializedName("creators")  val creators: CreatorRemote,
+    @SerializedName("characters")  val characters: CharacterRemote,
+    @SerializedName("stories")  val stories: StoryRemote,
+    @SerializedName("events")  val events: CharacterRemote
 )
 
 enum class DiamondCode {
+    @SerializedName("")
     Empty,
+    @SerializedName("jul190068")
     Jul190068
 }
 
 enum class Format {
+    @SerializedName("comic")
     Comic,
+    @SerializedName("digest")
     Digest,
+    @SerializedName("")
     Empty,
+    @SerializedName("tradePaperback")
     TradePaperback
 }
 
