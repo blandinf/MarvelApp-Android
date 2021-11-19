@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.lifecycle.lifecycleScope
 import com.blandinf.marvelapp.databinding.FragmentCatalogBinding
-import com.blandinf.marvelapp.networking.remote.models.ComicRemote
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class CatalogFragment : Fragment() {
 
@@ -39,29 +40,14 @@ class CatalogFragment : Fragment() {
                 this@CatalogFragment.adapter = it
             }
         }
-        viewModel.getComics().observe(viewLifecycleOwner, {
-            adapter.setItems(it)
-//            populateRecyclerView()
-        })
-
-//        binding.swipeRefreshLayout.setOnRefreshListener {
-//            viewModel.getComics()
-//        }
-    }
-
-    private fun populateRecyclerView(comics: List<ComicRemote>) {
-        if (comics.isNotEmpty()) adapter.setItems(ArrayList(comics))
-    }
-
-    private fun displayLoading(isLoading: Boolean) {
-        //binding.swipeRefreshLayout.isRefreshing = isLoading
-    }
-
-    private fun displayError(message: String?) {
-        if (message.isNullOrEmpty()) {
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-        } else {
-            Toast.makeText(context, "Unknown error", Toast.LENGTH_LONG).show()
+        lifecycleScope.launch {
+            viewModel.getComics()
+            viewModel.comicsUIState.collect { comicsUIState ->
+                when (comicsUIState) {
+                    is ComicsUiState.Error -> Toast.makeText(context, comicsUIState.exception.message, Toast.LENGTH_SHORT).show()
+                    is ComicsUiState.Success -> adapter.setItems(comicsUIState.comics)
+                }
+            }
         }
     }
 }
