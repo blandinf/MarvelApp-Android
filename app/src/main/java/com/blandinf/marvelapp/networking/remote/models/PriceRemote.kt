@@ -1,10 +1,10 @@
-package com.blandinf.marvelapp.networking.remote
+package com.blandinf.marvelapp.networking.remote.models
 
 import com.google.gson.annotations.SerializedName
 
 /** The attributes of the Price object */
 @Suppress("unused")
-data class PriceRemote (
+data class PriceRemote(
     @SerializedName("type") val type: PriceType,
     @SerializedName("price") val price: Double
 )

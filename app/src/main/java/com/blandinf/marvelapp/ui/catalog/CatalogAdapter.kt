@@ -1,57 +1,28 @@
 package com.blandinf.marvelapp.ui.catalog
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.blandinf.marvelapp.R
-import com.blandinf.marvelapp.networking.remote.ComicRemote
+import com.blandinf.marvelapp.networking.remote.models.ComicRemote
+import com.blandinf.marvelapp.ui.widget.CardComicViewHolder
 
-class CatalogAdapter(
-    private val dataset: List<ComicRemote>,
-    private val callback: () -> Unit
-) : RecyclerView.Adapter<CatalogAdapter.ViewHolder>() {
+class CatalogAdapter : RecyclerView.Adapter<CardComicViewHolder>() {
 
-    companion object {
-        const val IMAGE_SIZE = "portrait_medium"
+    private var items: List<ComicRemote> = emptyList()
+
+    fun setItems(items: List<ComicRemote>) {
+        this.items = items
+        notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val root: View) : RecyclerView.ViewHolder(root) {
-        fun bind(item: ComicRemote) {
-            val title = root.findViewById<TextView>(R.id.comic_title)
-            val image = root.findViewById<ImageView>(R.id.comic_image)
-
-            title.text = item.title
-
-            val pathBuilder = StringBuilder().apply {
-                append(item.thumbnail.path)
-                append("/")
-                append(IMAGE_SIZE)
-                append(".")
-                append(item.thumbnail.extension)
-            }
-            val path = pathBuilder.toString()
-
-            image.load(path) {
-                crossfade(R.integer.default_anim_duration)
-                placeholder(R.drawable.img_placeholder)
-            }
-
-            root.setOnClickListener {
-                callback()
-            }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardComicViewHolder {
+        return CardComicViewHolder.newInstance(parent) {
+            this.width = ViewGroup.LayoutParams.MATCH_PARENT
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.view_holder_card_comic, parent, false)
-    )
+    override fun onBindViewHolder(holder: CardComicViewHolder, position: Int) {
+        items[position].let { holder.bind(it) }
+    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(dataset[position])
-
-    override fun getItemCount(): Int = dataset.count()
+    override fun getItemCount(): Int = items.count()
 }

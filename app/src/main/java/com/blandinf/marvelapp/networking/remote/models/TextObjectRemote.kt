@@ -1,10 +1,10 @@
-package com.blandinf.marvelapp.networking.remote
+package com.blandinf.marvelapp.networking.remote.models
 
 import com.google.gson.annotations.SerializedName
 
 /** The attributes of the TextObject object */
 @Suppress("unused")
-data class TextObjectRemote (
+data class TextObjectRemote(
     @SerializedName("type") val type: TextObjectType,
     @SerializedName("language") val language: Language,
     @SerializedName("text") val text: String

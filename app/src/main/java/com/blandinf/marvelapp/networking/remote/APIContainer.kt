@@ -1,6 +1,6 @@
 package com.blandinf.marvelapp.networking.remote
 
-data class APIContainer<T> (
+data class APIContainer<T>(
     val offset: Long,
     val limit: Long,
     val total: Long,

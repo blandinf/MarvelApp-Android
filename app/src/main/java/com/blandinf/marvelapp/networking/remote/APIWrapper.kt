@@ -4,7 +4,7 @@ import retrofit2.Response
 
 typealias APIResponse<T> = Response<APIWrapper<T>>
 
-data class APIWrapper<T> (
+data class APIWrapper<T>(
     val code: Long,
     val status: String,
     val copyright: String,

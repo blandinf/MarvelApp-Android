@@ -1,12 +1,12 @@
-package com.blandinf.marvelapp.networking.remote
+package com.blandinf.marvelapp.networking.remote.models
 
 import com.google.gson.annotations.SerializedName
 
-/** The attributes of the Story object */
+/** The attributes of the Character object */
 @Suppress("unused")
-data class StoryRemote (
+data class CharacterRemote(
     @SerializedName("available") val available: Long,
     @SerializedName("collectionURI") val collectionURI: String,
-    @SerializedName("items") val items: List<StoryItemRemote>,
+    @SerializedName("items") val items: List<SerieRemote>,
     @SerializedName("returned") val returned: Long
 )

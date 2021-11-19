@@ -1,10 +1,10 @@
-package com.blandinf.marvelapp.networking.remote
+package com.blandinf.marvelapp.networking.remote.models
 
 import com.google.gson.annotations.SerializedName
 
 /** The attributes of the Story Item object */
 @Suppress("unused")
-data class StoryItemRemote (
+data class StoryItemRemote(
     @SerializedName("resourceURI") val resourceURI: String,
     @SerializedName("name") val name: String,
     @SerializedName("type") val type: ItemType
@@ -13,8 +13,10 @@ data class StoryItemRemote (
 enum class ItemType {
     @SerializedName("cover")
     Cover,
+
     @SerializedName("interiorStory")
     InteriorStory,
+
     @SerializedName("promo")
     Promo
 }

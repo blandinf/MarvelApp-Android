@@ -2,6 +2,7 @@ package com.blandinf.marvelapp.networking.api
 
 import androidx.test.platform.app.InstrumentationRegistry
 import com.blandinf.marvelapp.ApiModelProvider
+import com.blandinf.marvelapp.networking.NetworkingModules
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

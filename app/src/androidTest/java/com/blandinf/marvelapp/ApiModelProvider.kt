@@ -1,6 +1,6 @@
 package com.blandinf.marvelapp
 
-import com.blandinf.marvelapp.networking.remote.*
+import com.blandinf.marvelapp.networking.remote.models.*
 
 object ApiModelProvider {
     fun provideComic() = ComicRemote(

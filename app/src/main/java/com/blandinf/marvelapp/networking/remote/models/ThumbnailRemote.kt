@@ -1,10 +1,10 @@
-package com.blandinf.marvelapp.networking.remote
+package com.blandinf.marvelapp.networking.remote.models
 
 import com.google.gson.annotations.SerializedName
 
 /** The attributes of the Thumbnail object */
 @Suppress("unused")
-data class ThumbnailRemote (
+data class ThumbnailRemote(
     @SerializedName("path") val path: String,
     @SerializedName("extension") val extension: Extension
 )
