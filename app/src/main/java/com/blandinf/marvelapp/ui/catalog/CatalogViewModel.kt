@@ -3,9 +3,10 @@ package com.blandinf.marvelapp.ui.catalog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.blandinf.marvelapp.mappers.toComicUiModel
 import com.blandinf.marvelapp.networking.NetworkingModules
-import com.blandinf.marvelapp.networking.remote.models.ComicRemote
 import com.blandinf.marvelapp.repositories.CatalogRepository
+import com.blandinf.marvelapp.ui.models.ComicUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -41,7 +42,8 @@ class CatalogViewModel(
                     _comicsUIState.value = ComicsUiState.Error(exception)
                 }
                 .collect { comics ->
-                    _comicsUIState.value = ComicsUiState.Success(comics)
+                    val uiComics = comics.map { comic -> toComicUiModel(comic) }
+                    _comicsUIState.value = ComicsUiState.Success(uiComics)
                 }
         }
     }
@@ -49,6 +51,6 @@ class CatalogViewModel(
 
 // Represents different states for the Comics screen
 sealed class ComicsUiState {
-    data class Success(val comics: List<ComicRemote>) : ComicsUiState()
+    data class Success(val comics: List<ComicUiModel.Comic>) : ComicsUiState()
     data class Error(val exception: Throwable) : ComicsUiState()
 }

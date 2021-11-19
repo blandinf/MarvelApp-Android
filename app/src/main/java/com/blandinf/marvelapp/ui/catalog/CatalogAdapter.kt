@@ -2,14 +2,14 @@ package com.blandinf.marvelapp.ui.catalog
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.blandinf.marvelapp.networking.remote.models.ComicRemote
+import com.blandinf.marvelapp.ui.models.ComicUiModel
 import com.blandinf.marvelapp.ui.widget.CardComicViewHolder
 
 class CatalogAdapter : RecyclerView.Adapter<CardComicViewHolder>() {
 
-    private var items: List<ComicRemote> = emptyList()
+    private var items: List<ComicUiModel.Comic> = emptyList()
 
-    fun setItems(items: List<ComicRemote>) {
+    fun setItems(items: List<ComicUiModel.Comic>) {
         this.items = items
         notifyDataSetChanged()
     }

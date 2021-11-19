@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.blandinf.marvelapp.R
 import com.blandinf.marvelapp.databinding.ViewHolderCardComicBinding
-import com.blandinf.marvelapp.networking.remote.models.ComicRemote
+import com.blandinf.marvelapp.ui.models.ComicUiModel
 
 class CardComicViewHolder private constructor(private val binding: ViewHolderCardComicBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -31,7 +31,7 @@ class CardComicViewHolder private constructor(private val binding: ViewHolderCar
         const val IMAGE_SIZE = "portrait_medium"
     }
 
-    fun bind(comic: ComicRemote) {
+    fun bind(comic: ComicUiModel.Comic) {
         binding.cardComicTitle.text = comic.title
 
         val pathBuilder = StringBuilder().apply {
