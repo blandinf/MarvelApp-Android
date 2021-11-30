@@ -50,6 +50,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${librariesVersion.lifecycle}"
     implementation "androidx.recyclerview:recyclerview:${librariesVersion.recyclerview}"
     implementation "androidx.fragment:fragment-ktx:${librariesVersion.fragment}"
+    implementation "androidx.paging:paging-runtime-ktx:${librariesVersion.paging}"
 
     implementation "com.squareup.retrofit2:retrofit:${librariesVersion.retrofit}"
     implementation "com.squareup.retrofit2:converter-gson:${librariesVersion.retrofit}"

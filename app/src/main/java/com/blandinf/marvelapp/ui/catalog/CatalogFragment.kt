@@ -1,6 +1,7 @@
 package com.blandinf.marvelapp.ui.catalog
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +46,9 @@ class CatalogFragment : Fragment() {
             viewModel.comicsUIState.collect { comicsUIState ->
                 when (comicsUIState) {
                     is ComicsUiState.Error -> Toast.makeText(context, comicsUIState.exception.message, Toast.LENGTH_SHORT).show()
-                    is ComicsUiState.Success -> adapter.setItems(comicsUIState.comics)
+                    is ComicsUiState.Success -> {
+                        adapter.submitData(viewLifecycleOwner.lifecycle, comicsUIState.comics)
+                    }
                 }
             }
         }

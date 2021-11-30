@@ -1,6 +1,5 @@
 package com.blandinf.marvelapp.ui.widget
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
@@ -49,7 +48,6 @@ class CardComicViewHolder private constructor(private val binding: ViewHolderCar
         }
 
         binding.root.setOnClickListener {
-            Log.d("((click", "click on $it $comic")
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.blandinf.marvelapp.ui.catalog
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.blandinf.marvelapp.mappers.toComicUiModel
 import com.blandinf.marvelapp.networking.NetworkingModules
 import com.blandinf.marvelapp.repositories.CatalogRepository
@@ -31,7 +34,7 @@ class CatalogViewModel(
     }
 
     private val _comicsUIState: MutableStateFlow<ComicsUiState> =
-        MutableStateFlow(ComicsUiState.Success(emptyList()))
+        MutableStateFlow(ComicsUiState.Success(PagingData.empty()))
 
     val comicsUIState: StateFlow<ComicsUiState> = _comicsUIState
 
@@ -51,6 +54,6 @@ class CatalogViewModel(
 
 // Represents different states for the Comics screen
 sealed class ComicsUiState {
-    data class Success(val comics: List<ComicUiModel.Comic>) : ComicsUiState()
+    data class Success(val comics: PagingData<ComicUiModel.Comic>) : ComicsUiState()
     data class Error(val exception: Throwable) : ComicsUiState()
 }

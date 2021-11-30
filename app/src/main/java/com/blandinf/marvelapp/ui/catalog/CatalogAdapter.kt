@@ -1,19 +1,13 @@
 package com.blandinf.marvelapp.ui.catalog
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.paging.PagingDataAdapter
 import com.blandinf.marvelapp.ui.models.ComicUiModel
 import com.blandinf.marvelapp.ui.widget.CardComicViewHolder
 
-class CatalogAdapter : RecyclerView.Adapter<CardComicViewHolder>() {
-
-    private var items: List<ComicUiModel.Comic> = emptyList()
-
-    fun setItems(items: List<ComicUiModel.Comic>) {
-        this.items = items
-        notifyDataSetChanged()
-    }
-
+class CatalogAdapter : PagingDataAdapter<ComicUiModel.Comic, CardComicViewHolder>(
+    ComicUiModel.Comic.Companion
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardComicViewHolder {
         return CardComicViewHolder.newInstance(parent) {
             this.width = ViewGroup.LayoutParams.MATCH_PARENT
@@ -21,8 +15,6 @@ class CatalogAdapter : RecyclerView.Adapter<CardComicViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CardComicViewHolder, position: Int) {
-        items[position].let { holder.bind(it) }
+        getItem(position)?.let(holder::bind)
     }
-
-    override fun getItemCount(): Int = items.count()
 }

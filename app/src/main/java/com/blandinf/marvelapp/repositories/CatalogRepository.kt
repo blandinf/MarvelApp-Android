@@ -1,6 +1,10 @@
 package com.blandinf.marvelapp.repositories
 
 import android.util.Log
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.blandinf.marvelapp.datasource.ComicDataSource
 import com.blandinf.marvelapp.networking.api.ComicApi
 import com.blandinf.marvelapp.networking.remote.models.ComicRemote
 import kotlinx.coroutines.Dispatchers
@@ -14,16 +18,14 @@ private class CatalogRepositoryImpl(private val api: ComicApi) : CatalogReposito
         private const val TAG: String = "CatalogRepositoryImpl"
     }
 
-    override fun getComics(): Flow<List<ComicRemote>> = flow {
-        try {
-            val response = api.getComics()
-            val comics = response.body()?.data?.results
-                ?: throw IllegalStateException("response code is: ${response.code()}")
-            emit(comics)
-        } catch (e: Exception) {
-            Log.e(TAG, "getComics: ", e)
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun getComics(): Flow<PagingData<ComicRemote>> {
+        return Pager(PagingConfig(
+            pageSize = 20,
+            enablePlaceholders = false
+        )) {
+            ComicDataSource(api)
+        }.flow.flowOn(Dispatchers.IO)
+    }
 }
 
 interface CatalogRepository {
@@ -40,5 +42,5 @@ interface CatalogRepository {
         }
     }
 
-    fun getComics(): Flow<List<ComicRemote>>
+    fun getComics(): Flow<PagingData<ComicRemote>>
 }
