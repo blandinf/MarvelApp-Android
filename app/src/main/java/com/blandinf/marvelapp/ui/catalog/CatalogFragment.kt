@@ -1,7 +1,6 @@
 package com.blandinf.marvelapp.ui.catalog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.blandinf.marvelapp.databinding.FragmentCatalogBinding
+import com.blandinf.marvelapp.extensions.change
+import com.blandinf.marvelapp.ui.comic.ComicFragment
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -37,15 +38,27 @@ class CatalogFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.catalogRecyclerView.apply {
-            adapter = CatalogAdapter().also {
+            adapter = CatalogAdapter { comic ->
+                val fragment = ComicFragment()
+                val args = Bundle()
+                args.putString("title", comic.title)
+                fragment.arguments = args
+                (activity)?.change(fragment)
+            }
+            .also {
                 this@CatalogFragment.adapter = it
             }
         }
+
         lifecycleScope.launch {
             viewModel.getComics()
             viewModel.comicsUIState.collect { comicsUIState ->
                 when (comicsUIState) {
-                    is ComicsUiState.Error -> Toast.makeText(context, comicsUIState.exception.message, Toast.LENGTH_SHORT).show()
+                    is ComicsUiState.Error -> Toast.makeText(
+                        context,
+                        comicsUIState.exception.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                     is ComicsUiState.Success -> {
                         adapter.submitData(viewLifecycleOwner.lifecycle, comicsUIState.comics)
                     }

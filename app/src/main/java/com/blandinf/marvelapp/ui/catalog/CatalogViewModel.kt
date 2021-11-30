@@ -1,10 +1,10 @@
 package com.blandinf.marvelapp.ui.catalog
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import androidx.paging.map
 import com.blandinf.marvelapp.mappers.toComicUiModel
 import com.blandinf.marvelapp.networking.NetworkingModules
@@ -41,6 +41,7 @@ class CatalogViewModel(
     fun getComics() {
         viewModelScope.launch {
             catalogRepository.getComics()
+                .cachedIn(viewModelScope)
                 .catch { exception ->
                     _comicsUIState.value = ComicsUiState.Error(exception)
                 }

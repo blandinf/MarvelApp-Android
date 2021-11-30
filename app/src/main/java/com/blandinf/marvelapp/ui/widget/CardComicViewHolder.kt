@@ -30,7 +30,7 @@ class CardComicViewHolder private constructor(private val binding: ViewHolderCar
         const val IMAGE_SIZE = "portrait_medium"
     }
 
-    fun bind(comic: ComicUiModel.Comic) {
+    fun bind(comic: ComicUiModel.Comic, onClickOnComic: (ComicUiModel.Comic) -> Unit) {
         binding.cardComicTitle.text = comic.title
 
         val pathBuilder = StringBuilder().apply {
@@ -48,6 +48,7 @@ class CardComicViewHolder private constructor(private val binding: ViewHolderCar
         }
 
         binding.root.setOnClickListener {
+            onClickOnComic(comic)
         }
     }
 }
