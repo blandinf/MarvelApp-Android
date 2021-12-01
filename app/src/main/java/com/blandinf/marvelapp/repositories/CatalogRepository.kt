@@ -18,12 +18,12 @@ private class CatalogRepositoryImpl(private val api: ComicApi) : CatalogReposito
         private const val TAG: String = "CatalogRepositoryImpl"
     }
 
-    override fun getComics(): Flow<PagingData<ComicRemote>> {
+    override fun getComics(filtered: String?): Flow<PagingData<ComicRemote>> {
         return Pager(PagingConfig(
             pageSize = 20,
             enablePlaceholders = false
         )) {
-            ComicDataSource(api)
+            ComicDataSource(api, filtered)
         }.flow.flowOn(Dispatchers.IO)
     }
 }
@@ -42,5 +42,5 @@ interface CatalogRepository {
         }
     }
 
-    fun getComics(): Flow<PagingData<ComicRemote>>
+    fun getComics(filtered: String? = null): Flow<PagingData<ComicRemote>>
 }

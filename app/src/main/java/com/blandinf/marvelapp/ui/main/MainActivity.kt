@@ -6,6 +6,7 @@ import com.blandinf.marvelapp.R
 import com.blandinf.marvelapp.extensions.change
 import com.blandinf.marvelapp.ui.catalog.CatalogFragment
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

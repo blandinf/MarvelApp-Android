@@ -38,9 +38,9 @@ class CatalogViewModel(
 
     val comicsUIState: StateFlow<ComicsUiState> = _comicsUIState
 
-    fun getComics() {
+    fun getComics(filtered: String? = null) {
         viewModelScope.launch {
-            catalogRepository.getComics()
+            catalogRepository.getComics(filtered)
                 .cachedIn(viewModelScope)
                 .catch { exception ->
                     _comicsUIState.value = ComicsUiState.Error(exception)

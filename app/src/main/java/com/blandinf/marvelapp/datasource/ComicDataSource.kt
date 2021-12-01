@@ -8,6 +8,7 @@ import java.lang.IllegalStateException
 
 class ComicDataSource(
     private val api: ComicApi,
+    private val filtered: String?
 ) : PagingSource<Long, ComicRemote>() {
     override fun getRefreshKey(state: PagingState<Long, ComicRemote>): Long? {
         return state.pages.last().nextKey ?: 0
@@ -16,7 +17,7 @@ class ComicDataSource(
     override suspend fun load(params: LoadParams<Long>): LoadResult<Long, ComicRemote> {
         return try {
             val nextPageNumber = params.key ?: 0
-            val response = api.getComics(offset = nextPageNumber)
+            val response = api.getComics(offset = nextPageNumber, titleStartsWith = filtered ?: null)
             val data = response.body()?.data ?: throw Exception("Error get Comics Paginated")
 
             LoadResult.Page(

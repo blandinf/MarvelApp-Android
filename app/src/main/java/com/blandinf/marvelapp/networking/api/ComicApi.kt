@@ -9,10 +9,12 @@ interface ComicApi {
     companion object {
         const val URL_GET_COMICS = "comics"
         const val QUERY_PARAMETER_KEY_OFFSET = "offset"
+        const val QUERY_PARAMETER_KEY_TITLE_STARTS_WITH = "titleStartsWith"
     }
 
     @GET(URL_GET_COMICS)
     suspend fun getComics(
-        @Query(QUERY_PARAMETER_KEY_OFFSET) offset: Long = 0
+        @Query(QUERY_PARAMETER_KEY_OFFSET) offset: Long = 0,
+        @Query(QUERY_PARAMETER_KEY_TITLE_STARTS_WITH) titleStartsWith: String? = null
     ): APIResponse<ComicRemote>
 }
